@@ -30,7 +30,7 @@ app.post("/api/notes", (req, res) => {
     })
 });
 
-app.delete("api/notes/:id", (req, res) => {
+app.delete("/api/notes/:id", (req, res) => {
     const id = req.params.id;
     res.unlink(id, "./db/db.json")
     res.readFile(id, "./db/db.json")
