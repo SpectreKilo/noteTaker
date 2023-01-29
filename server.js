@@ -3,8 +3,8 @@ const path = require("path");
 const fs = require("fs");
 const util = require("util");
 const uniqid = require("uniqid");
-const PORT = 3001;
-// const PORT = process.env.PORT || 3001;
+// const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const noteData = require("./db/db.json")
 
 const app = express();
@@ -41,5 +41,5 @@ res.sendFile(path.join(__dirname, "public/index.html"))
 );
 
 app.listen(PORT, () => {
-    console.log("listening at http://localHost:${PORT}");
+    console.log(`listening at http://localHost:${PORT}`);
 });
