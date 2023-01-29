@@ -34,3 +34,11 @@ app.delete("api/notes/:id", (req, res) => {
     res.unlink(id, "./db/db.json")
     res.readFile(id, "./db/db.json")
 });
+
+app.get("*", (req, res) => 
+res.sendFile(path.join(__dirname, "public/index.html"))
+);
+
+app.listen(PORT, () => {
+    console.log("listening at http://localHost:${PORT}");
+});
