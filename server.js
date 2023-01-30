@@ -41,9 +41,9 @@ app.delete("/api/notes/:id", (req, res) => {
         if(err){
             console.log(err);
         }else{
-            var noteArr = JSON.parse(data)
-            var newArr = noteArr.filter(note => note.id !== deleteNoteId);
-            var strNewArr = JSON.stringify(newArr);
+            let noteArr = JSON.parse(data)
+            let newArr = noteArr.filter(note => note.id !== deleteNoteId);
+            let strNewArr = JSON.stringify(newArr);
             const updateNotes = writeToFile("./db/db.json", strNewArr);
             res.send(updateNotes);
         }
