@@ -9,10 +9,10 @@ const noteData = require("./db/db.json")
 
 const app = express();
 
-const writeToFile = (destination, content) =>
-  fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
-    err ? console.error(err) : console.info(`\nData written to ${destination} 👾`)
-  );
+// const writeToFile = (destination, content) =>
+//   fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
+//     err ? console.error(err) : console.info(`\nData written to ${destination} 👾`)
+//   );
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -36,21 +36,22 @@ app.post("/api/notes", (req, res) => {
 });
 
 app.delete("/api/notes/:id", (req, res) => {
-    let deleteNoteId = req.params.id
-    fs.readFile("./db/db.json", function(err, data) {
-        if(err){
-            console.log(err);
-        }else{
-            let noteArr = JSON.parse(data)
-            let newArr = noteArr.filter(note => note.id !== deleteNoteId);
-            let strNewArr = JSON.stringify(newArr);
-            const updateNotes = writeToFile("./db/db.json", strNewArr);
-            res.send(updateNotes);
-        }
-    });
-    // const id = req.params.id;
-    // res.unlink(id, "./db/db.json")
-    // res.readFile(id, "./db/db.json")
+    // let deleteNoteId = req.params.id
+    // fs.readFile("./db/db.json", function(err, data) {
+    //     if(err){
+    //         console.log(err);
+    //     }else{
+    //         let noteArr = JSON.parse(data)
+    //         console.log(noteArr);
+    //         let newArr = noteArr.filter(note => note.id !== deleteNoteId);
+    //         let strNewArr = JSON.stringify(newArr);
+    //         const updateNotes = writeToFile("./db/db.json", strNewArr);
+    //         res.send(updateNotes);
+    //     }
+    // });
+    const id = req.params.id;
+    res.unlink(id, "./db/db.json")
+    res.readFile(id, "./db/db.json")
 });
 
 app.get("*", (req, res) => 
